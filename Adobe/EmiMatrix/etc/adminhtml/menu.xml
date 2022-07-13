@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Adobe_EmiMatrix::emi_matrix" title="EMI Matrix" translate="title" module="Adobe_EmiMatrix"
+             parent="Magento_Catalog::catalog" sortOrder="30" action="emi_matrix/index/" resource="Adobe_EmiMatrix::emi_matrix"/>
+    </menu>
+</config>

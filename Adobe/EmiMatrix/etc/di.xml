@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="emi_matrix_listing_data_source" xsi:type="string">Adobe\EmiMatrix\Model\ResourceModel\EmiMatrix\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Adobe\EmiMatrix\Model\ResourceModel\EmiMatrix\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">emi_matrix</argument>
+            <argument name="eventPrefix" xsi:type="string">emi_matrix_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">matrix_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Adobe\EmiMatrix\Model\ResourceModel\EmiMatrix</argument>
+        </arguments>
+    </type>
+    <virtualType name="Adobe\EmiMatrix\Model\Api\SearchCriteria\EmiMatrixCollectionProcessor" type="Magento\Framework\Api\SearchCriteria\CollectionProcessor">
+        <arguments>
+            <argument name="processors" xsi:type="array">
+                <item name="filters" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessor\FilterProcessor</item>
+                <item name="sorting" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessor\SortingProcessor</item>
+                <item name="pagination" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessor\PaginationProcessor</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Adobe\EmiMatrix\Model\EmiMatrixRepository">
+        <arguments>
+            <argument name="collectionProcessor" xsi:type="object">Adobe\EmiMatrix\Model\Api\SearchCriteria\EmiMatrixCollectionProcessor</argument>
+            <argument name="hydrator" xsi:type="object">Magento\Framework\EntityManager\AbstractModelHydrator</argument>
+        </arguments>
+    </type>
+
+    <preference for="Adobe\EmiMatrix\Api\EmiMatrixRepositoryInterface" type="Adobe\EmiMatrix\Model\EmiMatrixRepository" />
+    <preference for="Adobe\EmiMatrix\Api\Data\EmiMatrixInterface" type="Adobe\EmiMatrix\Model\EmiMatrix" />
+    <preference for="Adobe\EmiMatrix\Api\Data\EmiMatrixSearchResultsInterface" type="Adobe\EmiMatrix\Model\EmiMatrixSearchResults"/>
+</config>

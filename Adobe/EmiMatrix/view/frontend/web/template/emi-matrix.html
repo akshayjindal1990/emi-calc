@@ -1,0 +1,28 @@
+<if args="customerInfo().fullname">
+    <a class="action open-modal-form" href="#" title="EMI options" data-trigger="emiPopup" data-bind="visible:isVisible">
+        <span data-bind="text:$t('EMI options')"></span>
+    </a>
+    <div id="adobe-emi-matrix-modal" class="emi-matrix" style="display:none;" data-bind="mageInit: {
+            'Magento_Ui/js/modal/modal':{
+                'type': 'popup',
+                'responsive': true,
+                'title': 'Emi Options',
+                'trigger': '[data-trigger=emiPopup]'
+            }}">
+        <span data-bind="text:$t('Standard Plans')"></span>
+        <table>
+            <tr>
+                <td data-bind="text: $t('EMI Plan')"></td>
+                <td data-bind="text: $t('Interest(pa)')"></td>
+                <td data-bind="text: $t('Total Cost')"></td>
+            </tr>
+            <!-- ko foreach: { data: reloadEmiMatrix(), as: 'emiInfo' } -->
+            <tr>
+                <td data-bind="text:emiInfo.emiPlan"></td>
+                <td data-bind="text:emiInfo.interest"></td>
+                <td data-bind="text:emiInfo.totalCost"></td>
+            </tr>
+            <!-- /ko -->
+        </table>
+    </div>
+</if>

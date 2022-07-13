@@ -1,0 +1,32 @@
+<?php
+use Magento\Framework\Escaper;
+use Magento\ConfigurableProduct\Model\Product\Type\Configurable;
+
+/* @var $block \Magento\Catalog\Block\Product\View */
+/** @var $escaper Escaper */
+/** @var $viewModel Adobe\EmiMatrix\ViewModel\EmiMatrix */
+$price = $block->getProduct()->getFinalPrice();
+$product = $block->getProduct();
+?>
+<div id="emi-matrix" data-bind="scope:'emi-matrix-new'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+<script type="text/x-magento-init">
+    {
+        "#emi-matrix": {
+               "Magento_Ui/js/core/app": {
+                "components": {                
+                    "emi-matrix-new": {
+                        "component": "Adobe_EmiMatrix/js/view/emi-matrix",
+                        "config" : {
+                            "spConfig": <?= ($product->getTypeId() == Configurable::TYPE_CODE) ? $block->getJsonConfig() : "[]"; ?>,
+                            "productPrice" : <?= $price ?>
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+</script>
+

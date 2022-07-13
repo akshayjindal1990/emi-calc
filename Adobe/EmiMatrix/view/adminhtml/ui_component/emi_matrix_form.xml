@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">emi_matrix_form.emi_matrix_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Emi Matrix Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">emi_matrix_form</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="Adobe\EmiMatrix\Block\Adminhtml\Edit\SaveButton"/>
+            <button name="delete" class="Adobe\EmiMatrix\Block\Adminhtml\Edit\DeleteButton"/>
+            <button name="back" class="Adobe\EmiMatrix\Block\Adminhtml\Edit\BackButton"/>
+        </buttons>
+        <namespace>emi_matrix_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>emi_matrix_form.emi_matrix_form_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="emi_matrix_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="emi_matrix/index/save"/>
+        </settings>
+        <dataProvider class="Adobe\EmiMatrix\Model\EmiMatrix\DataProvider" name="emi_matrix_form_data_source">
+            <settings>
+                <requestFieldName>entity_id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">false</item>
+                <item name="label" xsi:type="string" translate="true">Emi Matrix Details</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </item>
+        </argument>
+        <field name="entity_id" formElement="hidden">
+            <settings>
+                <dataType>text</dataType>
+            </settings>
+        </field>
+        <field name="interest_rate" sortOrder="20" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">interest_rate</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>int</dataType>
+                <visible>true</visible>
+                <label translate="true">Interest Rate</label>
+                <dataScope>interest_rate</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="tenure" sortOrder="20" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">tenure</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>int</dataType>
+                <visible>true</visible>
+                <label translate="true">Tenure</label>
+                <dataScope>tenure</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="gender" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">gender</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Gender</label>
+                <dataScope>gender</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Adobe\EmiMatrix\Model\EmiMatrix\Source\Gender"/>
+                        <caption translate="true">-- Please Select --</caption>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

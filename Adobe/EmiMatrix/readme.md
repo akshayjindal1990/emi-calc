@@ -19,7 +19,7 @@ A Link EMI Options will be shown in Product Details Page. When a  customer click
 
 #Acceptance Criteria:
 ---------------------
-The solution should be modular and reusable
+1. The solution should be modular and reusable
 2. The solution should follow Magento best practices
 3. The solution should support FPC 
 4. The solution should support simple and configurable product

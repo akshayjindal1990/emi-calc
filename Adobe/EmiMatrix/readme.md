@@ -1,3 +1,30 @@
+#Problem statement:
+---------------------
+
+As an admin I need the ability to configure EMI matrix in Admin which then will be used to calculate EMI options that are available to a customer. 
+The available EMI options can vary based on Gender and only Logged in customers should have the ability to view EMI options.
+If a logged in customer has no gender information saved then EMI options applicable for male gender will be shown
+ 
+
+Admin EMI matrix Configuration Fields  and sample values are as follow
+
+| Interest Rate | Tenure (Months)  | Gender |
+| ------- | --- | --- |
+| 16 | 3 | Male |
+| 12 | 6 | Male |
+| 10 | 6 | Female |
+| 10 | 12 | Male |
+
+A Link EMI Options will be shown in Product Details Page. When a  customer clicks it, a dialog box should open which should contain the available EMI offers as depicted in below screenshot . The product price would be used to calculate EMI options.
+
+#Acceptance Criteria:
+---------------------
+The solution should be modular and reusable
+2. The solution should follow Magento best practices
+3. The solution should support FPC 
+4. The solution should support simple and configurable product
+
+
 #Installation steps
 ---------------------
 EmiMatrix module installation is very easy, please follow the steps for installation-
